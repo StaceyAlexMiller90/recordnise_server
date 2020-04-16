@@ -6,17 +6,17 @@ const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient();
 const Discogs = require('disconnect').Client;
 
-var oAuth = new Discogs().oauth();
-oAuth.getRequestToken(
-  'CONSUMER_KEY', 
-  'CONSUMER_SECRET', 
-  'http://your-script-url/callback', 
-  function(err, requestData){
-    // Persist "requestData" here so that the callback handler can 
-    // access it later after returning from the authorize url
-    res.redirect(requestData.authorizeUrl);
-  }
-);
+// var oAuth = new Discogs().oauth();
+// oAuth.getRequestToken(
+//   'CONSUMER_KEY', 
+//   'CONSUMER_SECRET', 
+//   'http://your-script-url/callback', 
+//   function(err, requestData){
+//     // Persist "requestData" here so that the callback handler can 
+//     // access it later after returning from the authorize url
+//     res.redirect(requestData.authorizeUrl);
+//   }
+// );
 
 const router = new Router();
 
