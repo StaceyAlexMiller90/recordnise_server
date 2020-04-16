@@ -4,6 +4,19 @@ const authMiddleware = require("../auth/middleware");
 const vision = require('@google-cloud/vision');
 
 const client = new vision.ImageAnnotatorClient();
+const Discogs = require('disconnect').Client;
+
+var oAuth = new Discogs().oauth();
+oAuth.getRequestToken(
+  'CONSUMER_KEY', 
+  'CONSUMER_SECRET', 
+  'http://your-script-url/callback', 
+  function(err, requestData){
+    // Persist "requestData" here so that the callback handler can 
+    // access it later after returning from the authorize url
+    res.redirect(requestData.authorizeUrl);
+  }
+);
 
 const router = new Router();
 
@@ -30,4 +43,8 @@ router.post('/', authMiddleware, async (req,res,next) => {
   }
 })
 
+// For Later
+// https://api.discogs.com/database/search?q={query}&{?title=`${keywordSearch}`}
+
 module.exports = router;
+
