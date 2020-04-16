@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   user.associate = function(models) {
+    user.belongsToMany(models.record, {
+      through: 'collectionItems',
+      foreignKey: 'recordId'
+    })
   };
   return user;
 }
