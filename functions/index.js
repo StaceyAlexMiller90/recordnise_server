@@ -29,12 +29,29 @@ const analyseImage = async image => {
       features: [
           {
               type: "WEB_DETECTION"
+          },
+          {
+            type: "TEXT_DETECTION"
           }
       ]
     };
     const response = await client.annotateImage(request)
+    // Response from text detection
+    const textSearch = response[0].fullTextAnnotation.text
+    const formattedText = response[0].textAnnotations.map(word => {
+      return word.description
+    }).filter(word => {
+        const alphaNumeric = new RegExp(/^[a-zA-Z0-9-]+$/)
+        return alphaNumeric.test(word)
+      }).join(' ')
+    // Response from web detection
     const keywordSearch = response[0].webDetection.bestGuessLabels[0].label
-    return keywordSearch
+    // If web result has a high score, search discogs with web, otherwise with text
+    if(response[0].webDetection.webEntities.score > 1) {
+      return keywordSearch
+    } else {
+      return formattedText
+    }
   } catch (e) {
     console.log(e.message)
   }
@@ -44,8 +61,13 @@ const searchDiscogs = async (searchtext) => {
   try {
   const response = await db.search(searchtext)
   // console.log(response.results)
-  const formattedResponse = response.results.filter(res => res.type === 'release' && res.format.includes('Vinyl'))
-  .map(res => {
+  const formattedResponse = response.results.filter(res => {
+    if (res.type === 'release' && res.format.includes('Vinyl')){
+      return true
+    } else {
+      return false
+    }
+  }).map(res => {
     const split = res.title.split('-')
     res.artist = split[0].trim()
     res.recordTitle = split[1].trim()
