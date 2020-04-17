@@ -44,7 +44,8 @@ const searchDiscogs = async (searchtext) => {
   try {
   const response = await db.search(searchtext)
   // console.log(response.results)
-  const formattedResponse = response.results.map(res => {
+  const formattedResponse = response.results.filter(res => res.type === 'release' && res.format.includes('Vinyl'))
+  .map(res => {
     const split = res.title.split('-')
     res.artist = split[0].trim()
     res.recordTitle = split[1].trim()
