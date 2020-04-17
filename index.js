@@ -1,12 +1,9 @@
-const dotenv = require("dotenv");
 const express = require("express");
 const loggerMiddleWare = require("morgan");
 const { PORT } = require("./config/constants");
 const corsMiddleWare = require("cors");
 const authRouter = require("./routers/auth");
 const suggestionRouter = require("./routers/suggestions");
-
-dotenv.config();
 
 const app = express();
 

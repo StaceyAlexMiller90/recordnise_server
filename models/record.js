@@ -27,10 +27,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-      },
-      averagePrice: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       }
     }, {});
   record.associate = function(models) {
