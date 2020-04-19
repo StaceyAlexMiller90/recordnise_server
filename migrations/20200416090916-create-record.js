@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      artistName: {
+      artist: {
         type: Sequelize.STRING
       },
-      recordName: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -23,18 +23,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      yearReleased: {
+      year: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      coverArtwork: {
+      format: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      imageUrl: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      averagePrice: {
+      lowestPrice: {
         type: Sequelize.INTEGER,
-        allowNull: false
+      },
+      discogsId: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

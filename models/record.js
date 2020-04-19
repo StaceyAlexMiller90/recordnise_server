@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const record = sequelize.define(
     'record', 
     {
-      artistName: {
+      artist: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      recordName: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -19,18 +19,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      yearReleased: {
+      format: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      year: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      coverArtwork: {
+      lowestPrice: {
+        type: DataTypes.INTEGER,
+      },
+      discogsId: {
+        type: DataTypes.INTEGER,
+      },
+      imageUrl: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-      },
-      averagePrice: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       }
     }, {});
   record.associate = function(models) {

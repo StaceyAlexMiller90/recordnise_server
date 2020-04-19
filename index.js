@@ -1,11 +1,10 @@
-const dotenv = require("dotenv");
 const express = require("express");
 const loggerMiddleWare = require("morgan");
 const { PORT } = require("./config/constants");
 const corsMiddleWare = require("cors");
 const authRouter = require("./routers/auth");
-
-dotenv.config();
+const suggestionRouter = require("./routers/suggestions");
+const recordRouter = require("./routers/records");
 
 const app = express();
 
@@ -17,6 +16,8 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleWare());
 
 app.use("/", authRouter);
+app.use("/records", recordRouter);
+app.use("/suggestion", suggestionRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
