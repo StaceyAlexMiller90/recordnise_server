@@ -3,8 +3,6 @@ const authMiddleware = require("../auth/middleware");
 const { analyseImage } = require('../functions/index')
 const { searchDiscogs } = require('../functions/index')
 
-
-
 const router = new Router();
 
 router.post('/', authMiddleware, async (req,res,next) => {
