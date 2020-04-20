@@ -28,6 +28,7 @@ router.post('/', authMiddleware, async (req,res,next) => {
     })
     if(found) {
       await CollectionItems.create({userId, recordId: found.id})
+      res.status(200).send({message: 'Record added', found})
     } else {
       const newRecord = await Record.create({
         artist,
@@ -41,8 +42,8 @@ router.post('/', authMiddleware, async (req,res,next) => {
         imageUrl
       })
       await CollectionItems.create({userId, recordId: newRecord.id})
+      res.status(200).send({message: 'Record added', newRecord})
     }
-  res.status(200).send({message: 'Record added', newRecord})
   } catch(e) {
     next(e)
   }

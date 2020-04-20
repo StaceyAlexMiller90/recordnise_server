@@ -58,7 +58,7 @@ const analyseImage = async image => {
 }
 
 const formatItem = (item) => {
-  return item.length > 1 ? item.join(', ') : item.join('')
+  return item.length > 1 ? item.join(' | ') : item.join('')
 } 
 
 const searchDiscogs = async (searchtext) => {
