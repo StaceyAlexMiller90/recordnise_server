@@ -50,7 +50,7 @@ const analyseImage = async (image) => {
 		// Response from web detection
 		const keywordSearch = response[0].webDetection.bestGuessLabels[0].label
 		// If web result has a high score, search discogs with web result, otherwise with text result
-		if (response[0].webDetection.webEntities[0].score > 1) {
+		if (response[0].webDetection.webEntities[0].score > 0.7) {
 			return keywordSearch
 		} else {
 			return formattedText
