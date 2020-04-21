@@ -11,13 +11,11 @@ router.post('/', authMiddleware, async (req, res, next) => {
 		const googleResponse = await analyseImage(imageUrl)
 		const discogsResponse = await searchDiscogs(googleResponse)
 		console.log(googleResponse, discogsResponse)
-		res
-			.status(200)
-			.send({
-				message: 'Here is what we found...',
-				suggestion: googleResponse,
-				data: discogsResponse,
-			})
+		res.status(200).send({
+			message: 'Scanning complete',
+			suggestion: googleResponse,
+			data: discogsResponse,
+		})
 	} catch (e) {
 		next(e)
 	}
