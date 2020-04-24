@@ -33,6 +33,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
 		year,
 		imageUrl,
 	} = req.body
+
 	try {
 		const found = await Record.findOne({
 			where: {
