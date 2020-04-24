@@ -6,15 +6,20 @@ const CollectionItems = require('../models/').collectionItems
 const router = new Router()
 
 router.get('/', authMiddleware, async (req, res, next) => {
+	const limit = parseInt(req.query.limit) || 10
+	const offset = parseInt(req.query.offset) || 0
+	console.log(limit, offset)
 	const userId = parseInt(req.user.id)
+
 	try {
-		const userRecords = await CollectionItems.findAll({
+		const userRecords = await CollectionItems.findAndCountAll({
+			limit,
+			offset,
 			where: { userId },
 			include: [Record],
 		})
-		console.log(userRecords)
-		const filtered = userRecords.map((record) => record.record)
-		res.status(200).send(filtered)
+		const filtered = userRecords.rows.map((record) => record.record)
+		res.status(200).send({ records: filtered, count: userRecords.count })
 	} catch (e) {
 		next(e)
 	}
