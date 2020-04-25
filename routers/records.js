@@ -7,14 +7,15 @@ const router = new Router()
 
 router.get('/', authMiddleware, async (req, res, next) => {
 	const userId = parseInt(req.user.id)
+
 	try {
-		const userRecords = await CollectionItems.findAll({
+		const userRecords = await CollectionItems.findAndCountAll({
 			where: { userId },
 			include: [Record],
+			order: [['createdAt', 'DESC']],
 		})
-		console.log(userRecords)
-		const filtered = userRecords.map((record) => record.record)
-		res.status(200).send(filtered)
+		const filtered = userRecords.rows.map((record) => record.record)
+		res.status(200).send({ records: filtered, count: userRecords.count })
 	} catch (e) {
 		next(e)
 	}
