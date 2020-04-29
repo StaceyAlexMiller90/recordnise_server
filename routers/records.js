@@ -74,6 +74,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
 			res.status(200).send({ message: 'Record added', newRecord: newRecord })
 		}
 	} catch (e) {
+		res.status(400).send({ message: 'Sorry! Something went wrong' })
 		next(e)
 	}
 })
