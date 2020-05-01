@@ -65,8 +65,8 @@ router.post('/', authMiddleware, async (req, res, next) => {
 				genre,
 				style,
 				format,
-				year,
-				lowestPrice: lowestPrice === 'Unknown' ? 0 : lowestPrice,
+				year: year === 'Unknown' ? null : year,
+				lowestPrice: lowestPrice === 'Unknown' ? null : lowestPrice,
 				discogsId: id,
 				imageUrl,
 			})
@@ -89,6 +89,7 @@ router.delete('/', authMiddleware, async (req, res, next) => {
 		await recordToDelete.destroy()
 		res.status(200).send({ message: 'record deleted' })
 	} catch (e) {
+		res.status(400).send({ message: 'Sorry! Something went wrong' })
 		next(e)
 	}
 })
