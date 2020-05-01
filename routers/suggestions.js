@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const authMiddleware = require('../auth/middleware')
-const { analyseImage } = require('../functions/index')
-const { searchDiscogs } = require('../functions/index')
+const { analyseImage } = require('../utils/index')
+const { searchDiscogs } = require('../utils/index')
 
 const router = new Router()
 
