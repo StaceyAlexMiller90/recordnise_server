@@ -1,20 +1,22 @@
-'use strict';
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const collectionItems = sequelize.define(
-    'collectionItems', 
+    'collectionItems',
     {
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      recordId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    recordId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {});
-  collectionItems.associate = function(models) {
-    collectionItems.belongsTo(models.user, {foreignKey: 'userId'})
-    collectionItems.belongsTo(models.record, {foreignKey: 'recordId'})
-  };
-  return collectionItems;
-};
+    {}
+  )
+  collectionItems.associate = function (models) {
+    collectionItems.belongsTo(models.user, { foreignKey: 'userId' })
+    collectionItems.belongsTo(models.record, { foreignKey: 'recordId' })
+  }
+  return collectionItems
+}
