@@ -85,7 +85,6 @@ const searchDiscogs = async (searchtext) => {
 				return data
 			})
 		)
-		console.log(releaseData)
 		const formattedResponse = releaseData.map((release) => {
 			return {
 				artist: formatItem(release.artists.map((a) => a.name)) || '',
