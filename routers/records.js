@@ -65,8 +65,8 @@ router.post('/', authMiddleware, async (req, res, next) => {
 				genre,
 				style,
 				format,
-				year: year === 'Unknown' ? null : year,
-				lowestPrice: lowestPrice === 'Unknown' ? null : lowestPrice,
+				year: year,
+				lowestPrice: lowestPrice === 'Unknown' ? 0 : lowestPrice,
 				discogsId: id,
 				imageUrl,
 			})
