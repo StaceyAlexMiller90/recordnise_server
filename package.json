@@ -28,5 +28,10 @@
 		"pg": "^8.0.2",
 		"sequelize": "^5.21.6",
 		"sequelize-cli": "^5.5.1"
+	},
+	"prettier": {
+		"tabWidth": 2,
+		"semi": false,
+		"singleQuote": true
 	}
 }
