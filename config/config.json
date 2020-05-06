@@ -16,6 +16,12 @@
     "operatorsAliases": "0"
   },
   "production": {
+    "username": "yuremjzevzuuqv",
+    "password": "d3e494d93ad17ee25c2b728fc62e68a072dd0b7823c7fcead2b84145e46c0f50",
+    "database": "d8fu4vdvd5vb0l",
+    "host": "ec2-54-217-206-236.eu-west-1.compute.amazonaws.com",
+    "dialect": "postgres",
+    "operatorsAliases": "0",
     "use_env_variable": "DATABASE_URL"
   }
 }
