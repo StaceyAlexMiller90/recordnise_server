@@ -5,7 +5,13 @@ const vision = require('@google-cloud/vision')
 dotenv.config()
 
 //Google Cloud Vision API
-const client = new vision.ImageAnnotatorClient()
+const client = new vision.ImageAnnotatorClient({
+  projectId: process.env.GOOGLE_PROJECT_ID,
+  credentials: {
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  },
+})
 
 //Discogs API
 const key = process.env.DISCOGS_CONSUMER_KEY
