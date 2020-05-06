@@ -14,6 +14,7 @@ const client = new vision.ImageAnnotatorClient({
 })
 
 //Discogs API
+
 const key = process.env.DISCOGS_CONSUMER_KEY
 const secret = process.env.DISCOGS_CONSUMER_SECRET
 
