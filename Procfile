@@ -1,1 +1,1 @@
-release: npm run initdev
+release: bash post-release.sh
