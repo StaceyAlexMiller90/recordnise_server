@@ -13,10 +13,10 @@ router.post('/', authMiddleware, async (req, res, next) => {
       res.status(200).send({
         message: 'Search complete',
         suggestion: `${title} ${artist}`,
-        data: discogsResponse,
+        data: discogsResponse ? discogsResponse : [],
       })
-      console.log(discogsResponse)
     } catch (e) {
+      res.status(400).send({ message: 'Sorry! Something went wrong' })
       next(e)
     }
   } else {
@@ -26,9 +26,10 @@ router.post('/', authMiddleware, async (req, res, next) => {
       res.status(200).send({
         message: 'Scanning complete',
         suggestion: googleResponse,
-        data: discogsResponse,
+        data: discogsResponse ? discogsResponse : [],
       })
     } catch (e) {
+      res.status(400).send({ message: 'Sorry! Something went wrong' })
       next(e)
     }
   }
