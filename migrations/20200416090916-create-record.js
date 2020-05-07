@@ -10,6 +10,7 @@ module.exports = {
       },
       artist: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       title: {
         type: Sequelize.STRING,
@@ -17,24 +18,19 @@ module.exports = {
       },
       genre: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       style: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       year: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       format: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       imageUrl: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       lowestPrice: {
         type: Sequelize.INTEGER,
