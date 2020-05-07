@@ -77,7 +77,6 @@ const formatItem = (item) => {
 const searchDiscogs = async (searchtext) => {
   try {
     const response = await db.search(searchtext)
-    console.log(response)
     const filteredResponse = response.results.filter((res) => {
       if (res.type === 'release' && res.format.includes('Vinyl')) {
         return true
