@@ -36,11 +36,13 @@ router.post('/', authMiddleware, async (req, res, next) => {
   } = req.body
 
   try {
-    const found = await Record.findOne({
-      where: {
-        discogsId: true && id,
-      },
-    })
+    const found =
+      id &&
+      (await Record.findOne({
+        where: {
+          discogsId: id,
+        },
+      }))
     if (found) {
       const alreadyAdded = await CollectionItems.findOne({
         where: {
@@ -65,8 +67,9 @@ router.post('/', authMiddleware, async (req, res, next) => {
         genre,
         style,
         format,
-        year: year,
-        lowestPrice: lowestPrice === 'Unknown' ? 0 : lowestPrice,
+        year,
+        lowestPrice:
+          lowestPrice === 'Unknown' ? 0 : Math.round(parseInt(lowestPrice)),
         discogsId: id,
         imageUrl,
       })
@@ -74,6 +77,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
       res.status(200).send({ message: 'Record added', newRecord: newRecord })
     }
   } catch (e) {
+    console.log(e.errors)
     res.status(400).send({ message: 'Sorry! Something went wrong' })
     next(e)
   }
@@ -89,6 +93,7 @@ router.delete('/', authMiddleware, async (req, res, next) => {
     await recordToDelete.destroy()
     res.status(200).send({ message: 'record deleted' })
   } catch (e) {
+    console.log(e.errors)
     res.status(400).send({ message: 'Sorry! Something went wrong' })
     next(e)
   }
