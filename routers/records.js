@@ -46,6 +46,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
     if (found) {
       const alreadyAdded = await CollectionItems.findOne({
         where: {
+          userId,
           recordId: found.id,
         },
       })
